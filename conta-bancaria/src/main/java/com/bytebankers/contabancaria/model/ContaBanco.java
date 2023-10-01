@@ -7,38 +7,38 @@ public class ContaBanco {
    private float saldo;
    private boolean status;
 
-   public int Getnumconta(){
+   public int getNumConta(){
     return this.numconta;
    }
-   public void Setnumconta(int Novnumero){
-    this.numconta = Novnumero;
+   public void setNumConta(int Novonumero){
+    this.numconta = Novonumero;
    }
 
-   public String Gettipo(){
+   public String getTipo(){
     return this.tipo;
    }
-   public void Settipo(String Novotipo){
+   public void setTipo(String Novotipo){
     this.tipo = Novotipo;
    }
 
-   public String Getdono(){
+   public String getDono(){
     return this.dono;
    }
-   public void Setdono(String Novodono){
+   public void setDono(String Novodono){
     this.dono = Novodono;
    }
    
-   public float Getsaldo(){
+   public float getSaldo(){
     return this.saldo;
    }
-   public void Setsaldo(float Novosaldo){
+   public void setSaldo(float Novosaldo){
     this.saldo = Novosaldo;
    }
 
-   public boolean Getstatus(){
+   public boolean getStatus(){
     return this.status;
    }
-   public void Setstatus(boolean Novostatus){
+   public void setStatus(boolean Novostatus){
     this.status = Novostatus;
    }
    void status ()
