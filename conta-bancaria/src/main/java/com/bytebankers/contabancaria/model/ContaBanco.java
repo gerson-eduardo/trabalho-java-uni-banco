@@ -50,13 +50,17 @@ public class ContaBanco {
         System.out.println("A conta está aberta? " + this.status);
     }
     void abrirConta() {
-     if (this.status == false){
-         System.out.println("Abra sua conta!");
-     }else {
-         System.out.println("Sua conta está aberta! ");
-         
-     }
-    }
-    
-   
+        if(this.status == false){
+            System.out.println("Abrindo conta!");
+            this.status = true;
+            if(this.tipo == "CC"){
+                this.saldo = 50.f;
+            }
+            else{
+                 this.saldo = 150.f;
+            }
+        }else{
+            System.out.println("Sua conta já está aberta! ");
+        }
+    } 
 }
