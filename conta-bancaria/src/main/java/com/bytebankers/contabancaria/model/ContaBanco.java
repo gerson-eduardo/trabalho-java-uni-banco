@@ -39,7 +39,7 @@ public class ContaBanco {
     return this.status;
    }
    public void setStatus(boolean Novostatus){
-    this.status = Novostatus;
+    this.status = Novostatus;https://github.com/Eduard0-GE/trabalho-java-uni-banco/pull/3/conflict?name=conta-bancaria%252Fsrc%252Fmain%252Fjava%252Fcom%252Fbytebankers%252Fcontabancaria%252Fmodel%252FContaBanco.java&ancestor_oid=a94d074612f053c67553299b02fbe01c92de4c27&base_oid=b97f58a32c1f7a0a3e3cffec50c6271fb495a0bc&head_oid=a062253dbbdc5dc8fe20b360115e74037455c00f
    }
    void status ()
         {
@@ -49,7 +49,7 @@ public class ContaBanco {
         System.out.println("Saldo da conta: " + this.saldo);
         System.out.println("A conta está aberta? " + this.status);
     }
-    void abrirConta() {
+    public void abrirConta() {
         if(this.status == false){
             System.out.println("Abrindo conta!");
             this.status = true;
@@ -63,4 +63,13 @@ public class ContaBanco {
             System.out.println("Sua conta já está aberta! ");
         }
     } 
+    
+    public void depositar(float deposito){
+        if(this.status == false){
+            System.out.println("Voce nao pode depositar dinheiro, ative sua conta!");
+        }else{
+            this.saldo += deposito;
+            System.out.println("");   
+        } 
+    }
 }
