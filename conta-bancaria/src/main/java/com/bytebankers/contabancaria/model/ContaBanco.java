@@ -58,5 +58,12 @@ public class ContaBanco {
      }
     }
     
-   
+    public void depositar(float deposito){
+        if(this.status == false){
+            System.out.println("Voce nao pode depositar dinheiro, ative sua conta!");
+        }else{
+            this.saldo += deposito;
+            System.out.println("");   
+        } 
+    }
 }
