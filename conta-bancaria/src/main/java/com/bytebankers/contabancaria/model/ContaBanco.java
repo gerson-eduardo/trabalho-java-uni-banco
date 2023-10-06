@@ -66,6 +66,19 @@ public class ContaBanco {
         } 
     }
 
+    public void pagarMensalidade(){
+       if(this.status){
+           if(this.tipo == "CC"){
+               this.saldo -= 12f;
+           }else {
+               this.saldo -= 20f;
+           }
+           System.out.println("Mensalidade paga. Saldo atual: " + this.saldo);
+       }else {
+           System.out.println("Conta precisa ser aberta para poder pagar mensalidade");
+       }
+    }
+
     @Override
     public String toString() {
         return  "Número da conta: " + this.numconta + "\n" +
