@@ -7,39 +7,37 @@ public class ContaBanco {
    private float saldo;
    private boolean status;
 
-   public int getNumConta(){
-    return this.numconta;
-   }
-   public void setNumConta(int Novonumero){
-    this.numconta = Novonumero;
+   public int getNumConta(){return this.numconta;}
+   public void setNumConta(int novoNumero){
+    this.numconta = novoNumero;
    }
 
    public String getTipo(){
     return this.tipo;
    }
-   public void setTipo(String Novotipo){
-    this.tipo = Novotipo;
+   public void setTipo(String novoTipo){
+    this.tipo = novoTipo;
    }
 
    public String getDono(){
     return this.dono;
    }
-   public void setDono(String Novodono){
-    this.dono = Novodono;
+   public void setDono(String novoDono){
+    this.dono = novoDono;
    }
    
    public float getSaldo(){
     return this.saldo;
    }
-   public void setSaldo(float Novosaldo){
-    this.saldo = Novosaldo;
+   public void setSaldo(float novoSaldo){
+    this.saldo = novoSaldo;
    }
 
    public boolean getStatus(){
     return this.status;
    }
-   public void setStatus(boolean Novostatus){
-    this.status = Novostatus;
+   public void setStatus(boolean novoStatus){
+    this.status = novoStatus;
    }
 
     public void abrirConta() {
@@ -55,7 +53,19 @@ public class ContaBanco {
         }else{
             System.out.println("Sua conta já está aberta!");
         }
-    } 
+    }
+    public void fechaConta() {
+        if(this.status){
+            System.out.println("conta ja aberta");
+        }
+        else if(this.saldo != 0){
+            System.out.println("esvaziar saldo da conta");
+        }
+        else{
+            System.out.println("fechando conta");
+            this.status = false;
+        }
+    }
     
     public void depositar(float deposito){
         if(!this.status){
@@ -78,7 +88,6 @@ public class ContaBanco {
            System.out.println("Conta precisa ser aberta para poder pagar mensalidade");
        }
     }
-
     @Override
     public String toString() {
         return  "Número da conta: " + this.numconta + "\n" +
