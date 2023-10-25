@@ -1,4 +1,10 @@
 package com.bytebankers.contabancaria.model;
+
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor
+@AllArgsConstructor
 public class ContaBanco {
    
    public int numconta;
