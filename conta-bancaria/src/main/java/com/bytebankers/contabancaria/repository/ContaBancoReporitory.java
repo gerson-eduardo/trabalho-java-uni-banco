@@ -10,4 +10,5 @@ import java.util.Optional;
 public interface ContaBancoReporitory extends JpaRepository<ContaBanco, Integer> {
     ContaBanco save(ContaBanco conta);
     Optional<ContaBanco> findByNumconta(int id);
+    Optional<ContaBanco> findByNumcontaAndDono(int id, String nome);
 }
