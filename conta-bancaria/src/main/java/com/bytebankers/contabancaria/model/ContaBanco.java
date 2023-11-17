@@ -1,12 +1,18 @@
 package com.bytebankers.contabancaria.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
 @AllArgsConstructor
+@Entity
 public class ContaBanco {
-   
+   @Id
+   @GeneratedValue(strategy = GenerationType.IDENTITY)
    public int numconta;
    protected String tipo;
    private String dono;
