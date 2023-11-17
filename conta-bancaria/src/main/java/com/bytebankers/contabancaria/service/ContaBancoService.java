@@ -1,6 +1,7 @@
 package com.bytebankers.contabancaria.service;
 
 import com.bytebankers.contabancaria.ex.ContaNaoEncontradaException;
+import com.bytebankers.contabancaria.ex.TipoInvalidoDeContaException;
 import com.bytebankers.contabancaria.model.ContaBanco;
 import com.bytebankers.contabancaria.repository.ContaBancoReporitory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,11 +17,12 @@ public class ContaBancoService {
     private ContaBancoReporitory reporitory;
 
     public ContaBanco criarConta(String nome, String tipo){
-         ContaBanco conta = new ContaBanco();
-         conta.setDono(nome);
-         conta.setTipo(tipo);
-         conta.abrirConta();
-         return reporitory.save(conta);
+        if(!tipo.equals("CC")   && !tipo.equals("CP")){
+            throw new TipoInvalidoDeContaException("Tipo de conta inválido");
+        }
+        ContaBanco conta = new ContaBanco(nome, tipo);
+        conta.abrirConta();
+        return reporitory.save(conta);
     }
 
     public ContaBanco entrarNaConta(int id, String nome){
