@@ -19,6 +19,11 @@ public class ContaBanco {
    private float saldo;
    private boolean status;
 
+   public ContaBanco(String dono, String tipo){
+       this.dono = dono;
+       this.tipo = tipo;
+   }
+
    public int getNumConta(){return this.numconta;}
    public void setNumConta(int novoNumero){
     this.numconta = novoNumero;
