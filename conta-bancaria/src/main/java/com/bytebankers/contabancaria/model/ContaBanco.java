@@ -1,15 +1,21 @@
 package com.bytebankers.contabancaria.model;
 
+import com.bytebankers.contabancaria.ex.ContaJaAtiva;
+import com.bytebankers.contabancaria.ex.ContaNaoAtiva;
+import com.bytebankers.contabancaria.ex.ErroAoFecharConta;
+import com.bytebankers.contabancaria.ex.ValorTransacionalInvalido;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Data
 public class ContaBanco {
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,87 +30,65 @@ public class ContaBanco {
        this.tipo = tipo;
    }
 
-   public int getNumConta(){return this.numconta;}
-   public void setNumConta(int novoNumero){
-    this.numconta = novoNumero;
-   }
-
-   public String getTipo(){
-    return this.tipo;
-   }
-   public void setTipo(String novoTipo){
-    this.tipo = novoTipo;
-   }
-
-   public String getDono(){
-    return this.dono;
-   }
-   public void setDono(String novoDono){
-    this.dono = novoDono;
-   }
-   
-   public float getSaldo(){
-    return this.saldo;
-   }
-   public void setSaldo(float novoSaldo){
-    this.saldo = novoSaldo;
-   }
-
-   public boolean getStatus(){
-    return this.status;
-   }
-   public void setStatus(boolean novoStatus){
-    this.status = novoStatus;
-   }
-
     public void abrirConta() {
-        if(!this.status){
-            System.out.println("Abrindo conta!");
-            this.status = true;
-            if(this.tipo == "CC"){
+        if(this.status) {
+            throw new ContaJaAtiva("Conta não está ativa!");
+        }
+        this.status = true;
+        if(this.tipo == "CC"){
                 this.saldo = 50.f;
-            }
-            else{
-                 this.saldo = 150.f;
-            }
-        }else{
-            System.out.println("Sua conta já está aberta!");
+        }
+        else{
+            this.saldo = 150.f;
         }
     }
     public void fechaConta() {
-        if(this.status){
-            System.out.println("conta ja aberta");
-        }
-        else if(this.saldo != 0){
-            System.out.println("esvaziar saldo da conta");
-        }
-        else{
-            System.out.println("fechando conta");
-            this.status = false;
-        }
+       if(!this.status || saldo != 0f){
+           throw new ErroAoFecharConta("Erro ao fechar a conta");
+       }
+        this.status = false;
     }
     
     public void depositar(float deposito){
         if(!this.status){
-            System.out.println("Ative a sua conta para poder fazer um depósito dinheiro");
-        }else{
-            this.saldo += deposito;
-            System.out.println("Dinheiro depositado: "+ this.saldo);
-        } 
+            throw new ContaNaoAtiva("Conta precisa ser ativada");
+        }else if(deposito <= 0){
+            throw new ValorTransacionalInvalido("Valor menor ou igual a 0");
+        }
+        this.saldo += deposito;
     }
 
-    public void pagarMensalidade(){
-       if(this.status){
-           if(this.tipo == "CC"){
-               this.saldo -= 12f;
-           }else {
-               this.saldo -= 20f;
-           }
-           System.out.println("Mensalidade paga. Saldo atual: " + this.saldo);
-       }else {
-           System.out.println("Conta precisa ser aberta para poder pagar mensalidade");
-       }
+    public void sacar(float saque){
+        if(!this.status){
+            throw new ContaNaoAtiva("Conta precisa ser ativada");
+        }else if(saque <= 0){
+            throw new ValorTransacionalInvalido("Valor menor ou igual a 0");
+        }else if(this.saldo - saque < 0){
+            throw new ValorTransacionalInvalido("Valor do saque é maior que o valor do saldo");
+        }
+        this.saldo -= saque;
     }
+
+    public void pagarMensalidade(float mensalidade){
+       if(!this.status) {
+           throw new ContaNaoAtiva("Conta precisa ser ativada");
+       }else if(mensalidade <= 0) {
+           throw new ValorTransacionalInvalido("Valor menor ou igual a 0");
+       }
+
+       float mensalidadeTotal;
+       if(this.tipo.equals("CC")){
+           mensalidadeTotal = mensalidade + 12f;
+       }else {
+           mensalidadeTotal = mensalidade +20f;
+       }
+
+       if(this.saldo - mensalidadeTotal < 0) {
+           throw new ValorTransacionalInvalido("Valor da transação excedeu o saldo");
+       }
+       this.saldo -= mensalidadeTotal;
+    }
+
     @Override
     public String toString() {
         return  "Número da conta: " + this.numconta + "\n" +
