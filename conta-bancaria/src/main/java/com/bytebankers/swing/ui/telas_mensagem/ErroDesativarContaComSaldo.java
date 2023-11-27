@@ -6,12 +6,14 @@ package com.bytebankers.swing.ui.telas_mensagem;
 
 import com.bytebankers.contabancaria.model.ContaBanco;
 import com.bytebankers.swing.ui.TelaLogin;
+import com.bytebankers.swing.ui.TelaPrincipal;
 
 /**
  *
  * @author sammy
  */
-public class ErroContaDesativada extends javax.swing.JFrame {
+public class ErroDesativarContaComSaldo extends javax.swing.JFrame {
+    private ContaBanco conta;
     
 
     /**
@@ -19,7 +21,8 @@ public class ErroContaDesativada extends javax.swing.JFrame {
      */
 
         
-    public ErroContaDesativada() {
+    public ErroDesativarContaComSaldo(ContaBanco conta) {
+        this.conta = conta;
         initComponents();
     }
 
@@ -35,13 +38,14 @@ public class ErroContaDesativada extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
         jButton1.setText("jButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Liberation Sans", 0, 24)); // NOI18N
-        jLabel1.setText("Sua conta foi desativada!");
+        jLabel1.setText("Esvazie o saldo da conta");
 
         jButton2.setText("ok");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -50,28 +54,34 @@ public class ErroContaDesativada extends javax.swing.JFrame {
             }
         });
 
+        jLabel2.setFont(new java.awt.Font("Liberation Sans", 0, 24)); // NOI18N
+        jLabel2.setText("para poder desativar ela");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(51, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(46, 46, 46))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(130, 130, 130))))
+                .addGap(46, 46, 46)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(51, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(133, 133, 133))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(93, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(87, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(107, 107, 107))
+                .addGap(65, 65, 65))
         );
 
         pack();
@@ -79,7 +89,7 @@ public class ErroContaDesativada extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botaook(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaook
-    new TelaLogin().setVisible(true);
+    new TelaPrincipal(this.conta).setVisible(true);
     this.dispose();// TODO add your handling code here:
     }//GEN-LAST:event_botaook
 
@@ -124,7 +134,7 @@ public class ErroContaDesativada extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ErroContaDesativada().setVisible(true);
+                //new ErroDesativarContaComSaldo().setVisible(true);
             }
         });
     }
@@ -133,5 +143,6 @@ public class ErroContaDesativada extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 }
