@@ -8,6 +8,8 @@ import com.bytebankers.swing.ui.telas_mensagem.TelaMensagem;
 import com.bytebankers.contabancaria.ex.ErroAoFecharConta;
 import com.bytebankers.contabancaria.model.ContaBanco;
 import com.bytebankers.swing.http.ClienteHttp;
+import com.bytebankers.swing.ui.telas_mensagem.ErroDesativarContaComSaldo;
+import com.bytebankers.swing.ui.telas_mensagem.SucessoContaDesativada;
 
 /**
  *
@@ -103,9 +105,9 @@ public class TelaFecharConta extends javax.swing.JFrame {
            this.conta.fechaConta();
            ClienteHttp.salvarAlteracoes(this.conta);
            this.dispose();
-           new TelaLogin().setVisible(true);
+           new SucessoContaDesativada().setVisible(true);
        }catch(ErroAoFecharConta e){
-           new TelaMensagem(this.conta, "Erro ao fechar conta").setVisible(true);
+           new ErroDesativarContaComSaldo(this.conta).setVisible(true);
            this.dispose();
 
        }
