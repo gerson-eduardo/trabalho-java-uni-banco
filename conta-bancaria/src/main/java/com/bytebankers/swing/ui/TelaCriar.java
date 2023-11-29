@@ -10,6 +10,8 @@ import com.bytebankers.swing.http.ClienteHttp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.HashMap;
+
 /**
  *
  * @author sammy
@@ -163,15 +165,21 @@ public class TelaCriar extends javax.swing.JFrame {
     private void criarConta(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_criarConta
         // TODO add your handling code here:
         ContaBanco novaConta;
+        HashMap<String, String> map = new HashMap<>();
+
         String nome = criarFormNomeInput.getText();
         String tipo = (String) escolhaTipo.getSelectedItem();
-        System.out.println(tipo);
+
         if(tipo.equals("Conta Corrente")){
             tipo = "CC";
         }else{
             tipo = "CP";
         }
-        novaConta = ClienteHttp.criarConta(nome, tipo);
+
+        map.put("nome", nome);
+        map.put("tipo", tipo);
+
+        novaConta = ClienteHttp.criarConta(map);
         TelaPrincipal tela = new TelaPrincipal(novaConta);
         this.dispose();
         tela.setVisible(true);
