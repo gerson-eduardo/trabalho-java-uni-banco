@@ -9,21 +9,15 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.HashMap;
 
 
 public class ClienteHttp {
     private static final String BASE_URL = "http://localhost:8080";
     private static final ObjectMapper mapper = new ObjectMapper();
 
-    public static void main(String[] args){
-//        ContaBanco conta = entrarNaConta(3, "Borlink");
-//        conta.setDono("Kagami");
-//        ContaBanco contaAlterada = salvarAlteracoes(conta);
-//        System.out.println(contaAlterada);
-    }
-
-    public static ContaBanco criarConta(String nome, String tipo) {
-        String resposta = fazerRequisicaoHttp("POST", "/conta/" + nome + "/" + tipo);
+    public static ContaBanco criarConta(HashMap<String, String> map) {
+        String resposta = fazerRequisicaoHttp("POST", "/conta", map);
         try {
             return mapper.readValue(resposta, ContaBanco.class);
         } catch (IOException e) {
