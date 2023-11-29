@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
+
 @RestController
 public class controller {
     @Autowired
@@ -18,6 +20,15 @@ public class controller {
     public ResponseEntity<ContaBanco> criarConta(@PathVariable String nome, @PathVariable String tipo){
         try {
             return ResponseEntity.ok().body(service.criarConta(nome, tipo));
+        }catch(TipoInvalidoDeContaException e){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @PostMapping("/conta")
+    public ResponseEntity<ContaBanco> criarConta(@RequestBody HashMap<String, String > map){
+        try {
+            return ResponseEntity.ok().body(service.criarConta(map.get("nome"), map.get("tipo")));
         }catch(TipoInvalidoDeContaException e){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
