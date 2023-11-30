@@ -236,7 +236,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_depositarDinheiro
 
     private void pagarMensalidade(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pagarMensalidade
-        TelaTransacao mensalidade = new TelaTransacao(this.conta, 2);
+        TelaMensalidade mensalidade = new TelaMensalidade(this.conta);
         this.dispose();
         mensalidade.setVisible(true);
     }//GEN-LAST:event_pagarMensalidade
