@@ -36,12 +36,16 @@
               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="efeturaTransacao" max="32767" attributes="0"/>
-                  <Component id="valorTransacao" pref="161" max="32767" attributes="0"/>
-                  <Component id="textoTransacao" alignment="0" max="32767" attributes="0"/>
+                  <Component id="valorTransacao" max="32767" attributes="0"/>
                   <Component id="valorSaldo" alignment="0" max="32767" attributes="0"/>
                   <Component id="efeturaTransacao1" alignment="1" max="32767" attributes="0"/>
+                  <Component id="valorTaxa" alignment="0" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
+                      <Component id="textoTransacao" min="-2" pref="136" max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace pref="124" max="32767" attributes="0"/>
+              <EmptySpace pref="109" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -61,7 +65,9 @@
               <Component id="efeturaTransacao1" min="-2" pref="35" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="valorSaldo" min="-2" pref="30" max="-2" attributes="0"/>
-              <EmptySpace pref="30" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="valorTaxa" min="-2" pref="30" max="-2" attributes="0"/>
+              <EmptySpace pref="27" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -69,9 +75,7 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="textoTransacao">
       <Properties>
-        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="transacoes[escolha]" type="code"/>
-        </Property>
+        <Property name="text" type="java.lang.String" value="Pagar mensalidade"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="valorTransacao">
@@ -81,9 +85,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="efeturaTransacao">
       <Properties>
-        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="transacao[escolha]" type="code"/>
-        </Property>
+        <Property name="text" type="java.lang.String" value="Pagar Mensalidade"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="efeturaTransacaoActionPerformed"/>
@@ -108,6 +110,13 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="voltar"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="valorTaxa">
+      <Properties>
+        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="&quot;Taxa : &quot; + this.taxa" type="code"/>
+        </Property>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>
