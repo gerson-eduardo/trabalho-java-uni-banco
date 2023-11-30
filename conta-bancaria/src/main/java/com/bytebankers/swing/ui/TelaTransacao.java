@@ -22,7 +22,7 @@ public class TelaTransacao extends javax.swing.JFrame {
     private String transacoes[] = {"Digite o valor do depósito", "Digite o valor do saque", "Digite o valor da mensalidade"};
     private String transacao[] = {"Depositar", "Sacar", "Pagar Mensalidade"};
     private int escolha;
-
+    
     /**
      * Creates new form Depositar
      */
@@ -131,22 +131,15 @@ public class TelaTransacao extends javax.swing.JFrame {
             }catch(ValorTransacionalInvalido e){
                 ocorreuErro = true;
             }
-        }else if(escolha == 1){
-            try{
-                System.out.println(this.conta.getSaldo() - Float.parseFloat(valorTransacao.getText()));
-                contaN.sacar(Float.parseFloat(valorTransacao.getText()));
-            }catch(ValorTransacionalInvalido e){
-                ocorreuErro = true;
-            }
-            contaN = ClienteHttp.salvarAlteracoes(conta);
         }else{
             try{
-                contaN.pagarMensalidade(Float.parseFloat(valorTransacao.getText()));
+                contaN.sacar(Float.parseFloat(valorTransacao.getText()));
                 contaN = ClienteHttp.salvarAlteracoes(conta);
             }catch(ValorTransacionalInvalido e){
                 ocorreuErro = true;
             }
         }
+        
         if(ocorreuErro){
             this.dispose();
             new ErroTransacaoNegada(this.conta).setVisible(true);
