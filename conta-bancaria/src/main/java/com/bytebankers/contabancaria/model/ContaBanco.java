@@ -35,13 +35,14 @@ public class ContaBanco {
             throw new ContaJaAtiva("Conta não está ativa!");
         }
         this.status = true;
-        if(this.tipo == "CC"){
+        if(this.tipo.equals("CC")){
                 this.saldo = 50.f;
         }
         else{
             this.saldo = 150.f;
         }
     }
+
     public void fechaConta() {
        if(!this.status || saldo != 0f){
            throw new ErroAoFecharConta("Erro ao fechar a conta");
@@ -52,8 +53,8 @@ public class ContaBanco {
     public void depositar(float deposito){
         if(!this.status){
             throw new ContaNaoAtiva("Conta precisa ser ativada");
-        }else if(deposito <= 0){
-            throw new ValorTransacionalInvalido("Valor menor ou igual a 0");
+        }else if(!(deposito > 0)){
+            throw new ValorTransacionalInvalido("Valor deve ser maior que 0");
         }
         this.saldo += deposito;
     }
@@ -61,8 +62,8 @@ public class ContaBanco {
     public void sacar(float saque){
         if(!this.status){
             throw new ContaNaoAtiva("Conta precisa ser ativada");
-        }else if(saque <= 0){
-            throw new ValorTransacionalInvalido("Valor menor ou igual a 0");
+        }else if(!(saque > 0)){
+            throw new ValorTransacionalInvalido("Valor deve ser maior que 0");
         }else if(this.saldo - saque < 0){
             throw new ValorTransacionalInvalido("Valor do saque é maior que o valor do saldo");
         }
